@@ -1,6 +1,19 @@
 #chat{
     display: none;
+    position: fixed;
+    margin-top: 300px;
+
 }
 div.chat{
-    margin-top: 400px;
+    margin-top: 300px;
+
 }
+p{
+    margin-top: 10px;
+    color: blue;
+    position: static;
+
+}
+ 
+
+
