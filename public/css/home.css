@@ -1,17 +1,19 @@
 #chat{
     display: none;
     position: fixed;
-    margin-top: 300px;
+    margin-top: 10px;
 
 }
 div.chat{
-    margin-top: 300px;
+    margin-top: 10px;
 
 }
-p{
+#text{
     margin-top: 10px;
     color: blue;
     position: static;
+    height: 300px;
+    overflow: auto;
 
 }
  

@@ -21,10 +21,10 @@ function realTime4(){
                 pass.push(change.doc.data().pass);
             }
             if (change.type === "modified") {
-                console.log("Modified city: ", change.doc.data());
+                console.log("Modified doc: ", change.doc.data());
             }
             if (change.type === "removed") {
-                console.log("Removed city: ", change.doc.data());
+                console.log("Removed doc: ", change.doc.data());
             }
         });
     });
@@ -42,6 +42,7 @@ db.collection("users").get().then((querySnapshot) => {
 
 
 $("#login").click(function(){
+    var isOnline;
     input = $("#fname").val();
     input2 = $("#lname").val();
     console.log("name is"+input);
@@ -50,12 +51,34 @@ $("#login").click(function(){
     if(input == names[i] && input2 == pass[i]){
         sName = names[i];
         localStorage.setItem("storageName",sName);
+        console.log("right");
+        db.collection("users").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(`${doc.id} => ${doc.data()}`);
+                if(sName == doc.get("name")){
+                db.collection("users").doc(doc.id).update({
+                    online: true
+                })
+                .then(function() {
+                    console.log("Document successfully updated!");
+                    isOnline =true;
+                    if(isOnline==true)
+                window.location.href="room.html";
+                })
+                .catch(function(error) {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });}
+            });
+        });
+               break;
 
-        window.location.href="room.html";
+  
     }
         else
         console.log("wrong ");
 }
+
 });
 
 $("#signup").click(function(){
@@ -78,7 +101,8 @@ $("#signup").click(function(){
         db.collection("users").add({
             name: input,
             pass: input2,
-            status: "user"
+            status: "user",
+            online: false
         })
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
