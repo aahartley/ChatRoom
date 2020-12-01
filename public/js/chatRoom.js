@@ -1,13 +1,15 @@
 var db = firebase.firestore();
 var text;
 var date = Date();
-var count=1;
+var count=0;
 var list =[];
+var emojis=[{key:":smile:",value:"0x1F600" },
+            {key:":burger:",value:"0x1F354"}];
 
 var name =localStorage.getItem("storageName");
 
 $(document).ready(function(){
-    $("#chat").emojioneArea();
+  //  $("#chat").emojioneArea();
 
 });
 users();
@@ -26,7 +28,7 @@ function users(){
     var dbName, dbOnline;
     var first = true;
     
-    db.collection("users").where("online", "!=", "")
+    db.collection("users").where("name", "!=", "").orderBy("name","asc")
         .onSnapshot(function(querySnapshot) {
             removeUsers();
             querySnapshot.forEach(function(doc) {
@@ -45,7 +47,7 @@ function users(){
 
 }
 
-function remove(dbName,dbTime,dbText){
+function remove(dbTime,dbName,dbText){
     console.log("removed called")
     db.collection("messages").get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -53,8 +55,8 @@ function remove(dbName,dbTime,dbText){
         });
     });
 
-    console.log("COUNT "+count);
-    count=1;
+    console.log("COUNT IN REMOVE "+count);
+    count=0;
     $("#text").html('');
     $("#text").append(dbTime+": ");
     $("#text").append(dbName+": ");
@@ -70,7 +72,9 @@ function welcome(){
     })
     .then(function() {
         console.log("Document successfully written!");
-        $(".emojionearea-editor").html('');
+      //  $(".emojionearea-editor").html('');
+      count=1;
+      writeCount();
 
 
     })
@@ -79,15 +83,38 @@ function welcome(){
     });
 }
 
+function writeCount(){
+    console.log("COUNT IS: ",count);
+db.collection("count").doc("count").set({
+    count: count
+})
+.then(function() {
+    console.log("Document successfully written!",count);
+})
+.catch(function(error) {
+    console.error("Error writing document: ", error);
+});
+}
 
+function readCount(){
+    db.collection("count").doc("count")
+    .onSnapshot(function(doc) {
+        console.log("Current data (READCOUNT): ", doc.data());
+        count = doc.get("count");
+    });
+}
 
 function realTime4(){
     var dbText,dbName;
 
     db.collection("messages").where("time", "!=", "").orderBy("time","asc")
     .onSnapshot(function(snapshot) {
+        
         snapshot.docChanges().forEach(function(change) {
+        
             if (change.type === "added") {
+                count++;
+                writeCount();
                 dbText = change.doc.get("text").toString();
                 dbName = change.doc.get("user").toString();
                 dbTime = change.doc.get("time").toString();
@@ -98,6 +125,7 @@ function realTime4(){
                 $("#text").append(dbTime+": ");
                 $("#text").append(dbName+": ");
                 $("#text").append(dbText+" <br>"); 
+                readCount();
                 if(count == 10){
                      remove(dbTime, dbName, dbText);
                      console.log("REMOVE IS OUT")
@@ -140,9 +168,21 @@ $("#logout").click(function(){
                 });
 });
 
+$(document).keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+       click();
+    }
+});
+$("#enter").click(click);
 
-$("#login").click(function(){
+function click(){
      text = $("#chat").val();
+     for(var i=0; i<emojis.length;i++){
+        if(text == emojis[i].key){
+            text =String.fromCodePoint(emojis[i].value);
+        }
+     }
     console.log(date);
      date = Date();
 
@@ -153,11 +193,12 @@ $("#login").click(function(){
     })
     .then(function() {
         console.log("Document successfully written!");
-        $(".emojionearea-editor").html('');
-        count++;
+       // $(".emojionearea-editor").html('');
+       $(".chat").html("<input id ='chat'></input> <input id='enter' type='button' value = 'submit'></input><input id='logout' type='button' value = 'logout'></input>");
+       $("#chat").focus();
         console.log("COUNT "+count);
         if(count >10){
-            count=1; 
+            count=0; 
             console.log("COUNT "+count);
 
         }
@@ -169,7 +210,7 @@ $("#login").click(function(){
         console.error("Error writing document: ", error);
     });
 
-});
+}
 
 
 

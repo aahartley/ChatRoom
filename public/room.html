@@ -18,14 +18,33 @@
  <title>room</title>
 </head>
 <body>
+    <div class="box">
     <p id ="text"></p>
     <div class="chat">
         <input id ="chat"></input>
-    </div>
-    <input id="login" type="button" value = "submit"></input><br>
-    <p id ="online"></p>
-    <input id="logout" type="button" value = "logout"></input><br>
+        <input id="enter" type="button" value = "submit"></input>
+        <input id="logout" type="button" value = "logout"></input><br>
 
+    </div>
+    </div>
+    <div class ="other">
+        <p id="oHead">Who is Online:</p><br>
+    <p id ="online"></p>
+    <table>
+        <tr>
+            <th>Emoji</th>
+            <th>Code</th>
+        </tr>
+        <tr>
+            <th>&#x1F600;</th>
+            <th>:smile:</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>:burger:</th>
+        </tr>
+        </table>
+</div>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="/__/firebase/8.0.1/firebase-app.js"></script>

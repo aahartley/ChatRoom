@@ -1,20 +1,66 @@
 #chat{
-    display: none;
-    position: fixed;
-    margin-top: 10px;
+  /*  display: none;*/
+    position: absolute;
+    margin-top: 25px;
+    width: 500px;
 
+}
+div.box{
+    border: black 2px;
+    border-style: solid;
+    width: 800px;
+    margin-left: 300px;
+    background-color: white;
+}
+#enter{
+    position: absolute;
+    width: 100px;
+    margin-top: 25px;
+    margin-left: 510px;
+
+}
+#logout{
+    position: absolute;
+    width: 100px;
+    margin-top: 25px;
+    margin-left: 700px;
+}
+body{
+    background-color: grey;
 }
 div.chat{
     margin-top: 10px;
 
 }
+
 #text{
     margin-top: 10px;
-    color: blue;
+    color: pink;
     position: static;
     height: 300px;
     overflow: auto;
 
+}
+#oHead{
+    position: absolute;
+    top:0;
+    padding: 5px;
+}
+#online{
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    margin-top: 100px;
+}
+table{
+    position: absolute;
+    right:500px;
+    width: 500px;
+    margin-top: 100px;
+}
+tr,th{
+    border: black 2px;
+    border-style: solid;
 }
  
 
