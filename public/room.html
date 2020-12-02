@@ -3,7 +3,7 @@
 <html lang ="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
     <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -18,18 +18,20 @@
  <title>room</title>
 </head>
 <body>
+    <p id="name">CHAT ROOM</p>
     <div class="box">
     <p id ="text"></p>
     <div class="chat">
-        <input id ="chat"></input>
-        <input id="enter" type="button" value = "submit"></input>
-        <input id="logout" type="button" value = "logout"></input><br>
+        <input id ="chat" type="text"></input>
+        <input id="enter" type="button" value = "enter"></input>
+        <input id="logout" type="button" value = "Logout"></input><br>
 
     </div>
     </div>
-    <div class ="other">
-        <p id="oHead">Who is Online:</p><br>
+    <div class ="online">
+        <p id="oHead">Who is Online (red is off, green is on):</p><br>
     <p id ="online"></p>
+    </div>
     <table>
         <tr>
             <th>Emoji</th>
@@ -40,11 +42,23 @@
             <th>:smile:</th>
         </tr>
         <tr>
-            <th></th>
-            <th>:burger:</th>
+            <th>&#x1F436;</th>
+            <th>:dog:</th>
         </tr>
-        </table>
-</div>
+        <tr>
+            <th>&#x1F497;</th>
+            <th>:heart:</th>
+        </tr>
+        <tr>
+            <th>&#x1F494;</th>
+            <th>:brokenheart:</th>
+        </tr>
+        <tr>
+            <th>&#x1F436;</th>
+            <th>:dog:</th>
+        </tr>
+        </table><br>
+        <p id='rules'>Be nice!</p>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="/__/firebase/8.0.1/firebase-app.js"></script>

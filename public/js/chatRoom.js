@@ -4,7 +4,10 @@ var date = Date();
 var count=0;
 var list =[];
 var emojis=[{key:":smile:",value:"0x1F600" },
-            {key:":burger:",value:"0x1F354"}];
+            {key:":dog:",value:"0x1F436"},
+            {key:":heart:",value:"0x1F497"},
+            {key:":heartbreak:",value:"0x1F494"},
+            {key:":dog:",value:"0x1F436"}];
 
 var name =localStorage.getItem("storageName");
 
@@ -26,7 +29,6 @@ function removeUsers(){
   
 function users(){
     var dbName, dbOnline;
-    var first = true;
     
     db.collection("users").where("name", "!=", "").orderBy("name","asc")
         .onSnapshot(function(querySnapshot) {
@@ -36,10 +38,15 @@ function users(){
                     
                     dbName = doc.get("name").toString();
                     dbOnline = doc.get("online").toString();
-                   
-                    $("#online").append(dbName+" "+dbOnline+" <br>");
-                    
-           
+                   // $("#online").append(dbName+" "+dbOnline+" <br>");
+                   if(dbOnline =="true"){
+                    $("#online").append($('<span>').css('color', 'green').text(dbName))
+                    .append($('<br>'));
+                   }
+                   else{
+
+                    $("#online").append($('<span>').css('color', 'red').text(dbName))
+                    .append($('<br>'));}
        
         });
     });
@@ -66,7 +73,7 @@ function remove(dbTime,dbName,dbText){
 
 function welcome(){
     db.collection("messages").doc("Admin").set({
-        text: "WELCOME",
+        text: "WELCOME, Remember to logout, messages erase after 10",
         user: "Admin",
         time: date
     })
@@ -194,7 +201,7 @@ function click(){
     .then(function() {
         console.log("Document successfully written!");
        // $(".emojionearea-editor").html('');
-       $(".chat").html("<input id ='chat'></input> <input id='enter' type='button' value = 'submit'></input><input id='logout' type='button' value = 'logout'></input>");
+       $(".chat").html("<input id ='chat' type='text'></input> <input id='enter' type='button' value = 'submit'></input><input id='logout' type='button' value = 'logout'></input>");
        $("#chat").focus();
         console.log("COUNT "+count);
         if(count >10){
