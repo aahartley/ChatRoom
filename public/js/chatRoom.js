@@ -73,7 +73,7 @@ function remove(dbTime,dbName,dbText){
 
 function welcome(){
     db.collection("messages").doc("Admin").set({
-        text: "WELCOME, Remember to logout, messages erase after 10",
+        text: "WELCOME,"+name+" Remember to logout, messages erase after 10",
         user: "Admin",
         time: date
     })
@@ -150,7 +150,8 @@ function realTime4(){
     });
 }
 
-$("#logout").click(function(){
+$("#logout").click(logout);
+function logout(){
     console.log("log out");
     db.collection("users").where("online", "!=", "")
     .onSnapshot(function(querySnapshot) {
@@ -173,17 +174,12 @@ $("#logout").click(function(){
                     }
                     });
                 });
-});
+            }
 
-$(document).keypress(function(event){
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
-       click();
-    }
-});
-$("#enter").click(click);
 
-function click(){
+$("#enter").click(clickE);
+
+function clickE(){
      text = $("#chat").val();
      for(var i=0; i<emojis.length;i++){
         if(text == emojis[i].key){
@@ -201,7 +197,7 @@ function click(){
     .then(function() {
         console.log("Document successfully written!");
        // $(".emojionearea-editor").html('');
-       $(".chat").html("<input id ='chat' type='text'></input> <input id='enter' type='button' value = 'submit'></input><input id='logout' type='button' value = 'logout'></input>");
+       $(".chat").html("<input id ='chat' type='text'></input> <input id='enter' type='button' value = 'submit' onclick='clickE()'></input><input id='logout' type='button' onclick='logout()' value = 'logout'></input>");
        $("#chat").focus();
         console.log("COUNT "+count);
         if(count >10){
@@ -218,6 +214,12 @@ function click(){
     });
 
 }
+$(document).keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+       clickE();
+    }
+});
 
 
 
