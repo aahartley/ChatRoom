@@ -6,8 +6,13 @@ var list =[];
 var emojis=[{key:":smile:",value:"0x1F600" },
             {key:":dog:",value:"0x1F436"},
             {key:":heart:",value:"0x1F497"},
-            {key:":heartbreak:",value:"0x1F494"},
-            {key:":dog:",value:"0x1F436"}];
+            {key:":brokenheart:",value:"0x1F494"},
+            {key:":frown:",value:"0x1F641"},
+            {key:":cry:",value:"0x1F622"},
+            {key:":joy:",value:"0x1F602"},
+            {key:":dead:",value:"0x1F480"},
+            {key:":fire:",value:"0x1F525"},
+            {key:":seenoevil:",value:"0x1F648"}];
 
 var name =localStorage.getItem("storageName");
 
@@ -178,6 +183,12 @@ function logout(){
 
 
 $("#enter").click(clickE);
+$("#tb th").click(function(){
+    console.log($(this).text());
+    var t = $(this).text();
+    $("#chat").val($("#chat").val()+t);
+
+});
 
 function clickE(){
      text = $("#chat").val();
