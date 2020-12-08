@@ -69,6 +69,7 @@ function remove(dbTime,dbName,dbText){
 
     console.log("COUNT IN REMOVE "+count);
     count=0;
+    writeCount();
     $("#text").html('');
     $("#text").append(dbTime+": ");
     $("#text").append(dbName+": ");
