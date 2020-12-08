@@ -116,6 +116,17 @@ function readCount(){
         count = doc.get("count");
 
     });
+    if(count >=10){
+        db.collection("count").doc("count").set({
+            count: 0
+        })
+        .then(function() {
+            console.log("Document successfully written!",count);
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    }
  
 }
 
