@@ -43,6 +43,7 @@ db.collection("users").get().then((querySnapshot) => {
 
 $("#login").click(function(){
     var isOnline;
+    var wrong = false;
     input = $("#fname").val();
     input2 = $("#lname").val();
     console.log("name is"+input);
@@ -51,6 +52,7 @@ $("#login").click(function(){
     if(input == names[i] && input2 == pass[i]){
         sName = names[i];
         localStorage.setItem("storageName",sName);
+        wrong = true;
         console.log("right");
         db.collection("users").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -75,9 +77,16 @@ $("#login").click(function(){
 
   
     }
-        else
+        else{
         console.log("wrong ");
+        wrong = false;
+        
+        }
+
 }
+if(wrong==false)
+alert("Login was incorrect");
+
 
 });
 
@@ -96,6 +105,7 @@ $("#signup").click(function(){
     }
     if(taken){
         console.log("taken");
+        alert("Username taken");
     }
     else{
         db.collection("users").add({

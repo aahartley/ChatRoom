@@ -78,7 +78,7 @@ function remove(dbTime,dbName,dbText){
 
 function welcome(){
     db.collection("messages").doc("Admin").set({
-        text: "WELCOME,"+name+" Remember to logout, messages erase after 10",
+        text: "WELCOME, "+name+"! Remember to logout, messages erase after 10",
         user: "Admin",
         time: date
     })
