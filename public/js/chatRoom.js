@@ -1,7 +1,7 @@
 var db = firebase.firestore();
 var text;
 var date = Date();
-var count=0;
+var count= 0;
 var list =[];
 var emojis=[{key:":smile:",value:"0x1F600" },
             {key:":dog:",value:"0x1F436"},
@@ -16,10 +16,6 @@ var emojis=[{key:":smile:",value:"0x1F600" },
 
 var name =localStorage.getItem("storageName");
 
-$(document).ready(function(){
-  //  $("#chat").emojioneArea();
-
-});
 users();
 welcome();
 realTime4();
@@ -43,7 +39,6 @@ function users(){
                     
                     dbName = doc.get("name").toString();
                     dbOnline = doc.get("online").toString();
-                   // $("#online").append(dbName+" "+dbOnline+" <br>");
                    if(dbOnline =="true"){
                     $("#online").append($('<span>').css('color', 'green').text(dbName))
                     .append($('<br>'));
@@ -85,8 +80,7 @@ function welcome(){
     })
     .then(function() {
         console.log("Document successfully written!");
-      //  $(".emojionearea-editor").html('');
-      count=1;
+      count+=1;
       writeCount();
 
 
