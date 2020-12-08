@@ -113,7 +113,9 @@ function readCount(){
     .onSnapshot(function(doc) {
         console.log("Current data (READCOUNT): ", doc.data());
         count = doc.get("count");
+
     });
+ 
 }
 
 function realTime4(){
@@ -138,10 +140,10 @@ function realTime4(){
                 $("#text").append(dbName+": ");
                 $("#text").append(dbText+" <br>"); 
                 readCount();
-                if(count == 10){
+                if(count >= 10){
                      remove(dbTime, dbName, dbText);
-                     console.log("REMOVE IS OUT")
-9                }
+                     console.log("REMOVE IS OUT");
+                }
                      
            }
             if (change.type === "modified") {
