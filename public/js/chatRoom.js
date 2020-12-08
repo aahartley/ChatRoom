@@ -216,7 +216,7 @@ function clickE(){
     .then(function() {
         console.log("Document successfully written!");
        // $(".emojionearea-editor").html('');
-       $(".chat").html("<input id ='chat' type='text'></input> <input id='enter' type='button' value = 'submit' onclick='clickE()'></input><input id='logout' type='button' onclick='logout()' value = 'logout'></input>");
+       $(".chat").html("<input id ='chat' type='text'></input> <input id='enter' type='button' value = 'enter' onclick='clickE()'></input><input id='logout' type='button' onclick='logout()' value = 'Logout'></input>");
        $("#chat").focus();
         console.log("COUNT "+count);
         if(count >10){
