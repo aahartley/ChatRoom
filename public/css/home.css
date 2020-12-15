@@ -11,6 +11,29 @@
     width: 500px;
 
 }
+#size{
+    visibility: hidden;
+}
+@media only screen and (max-width: 1000px) {
+    div.box{
+        width: 50%;
+        height: 50%;
+    }
+    #name{
+        text-align: right;
+    }
+    #emo{
+        visibility: hidden;
+    }
+    table{
+        visibility: hidden;
+    }
+    #size{
+        visibility: visible;
+        color:white
+    }
+ 
+}
 div.box{
     border: black 2px;
     border-style: solid;

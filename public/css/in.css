@@ -24,23 +24,45 @@ li a:hover{
     background-color: white;
 }
   body{
-    background-image: url("../img/cherry.jpg");
+      background-image: url("../img/cherry.jpg");
 
 }
+@media only screen and (max-width: 1000px) {
+
+    body {
+    background-size: 100% 100%;
+
+    background-color: pink;
+   }
+   div.box{
+       position: absolute;
+       right: 20%;
+       margin-left: 0%;
+       width: 50%;
+       height: 50%;
+   }
+   #head{
+       position: absolute;
+       right:24%;
+   }
+    
+    }
+
 div.box{
-    position: absolute;
+    justify-content: flex-end;
+    position: relative;
     background-color: transparent;
     margin-left: 60%;  
-    margin-top: 10%;
+    margin-top: 1%;
     border: white;
     border-style: solid;
     border-width: 2px;
-    width: 400px;
+    width: 30%;
 }
 #head{
-    position: absolute;
+    position: relative;
     background-color: transparent;
-    margin-left: 66%;  
+    margin-left: 68%;  
     margin-top: 5%;
     font-size: 40px;
     color:white;
@@ -77,4 +99,3 @@ input[type=text], input[type=password] {
       background-color: white;
       color:black
   }
-
